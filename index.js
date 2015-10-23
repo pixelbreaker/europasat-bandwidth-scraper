@@ -42,16 +42,4 @@ casper.waitFor(function() {
   fs.write(logfile, stripAmount(usage.download) + ',' + stripAmount(usage.upload) + ',' + timestamp + '\n', 'a');
 });
 
-// casper.then(function(){
-//   var downloadUsage = this.evaluate(function(){
-//     return document.querySelector('.ses-chart .panel:first-child .zone1 .pointer-label').childNodes[0].nodeValue.trim();
-//   });
-//   console.log('downloadUsage:', downloadUsage);
-// })
-
-
-
-
-
-
 casper.run();
