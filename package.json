@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "ascii-table": "0.0.8",
+    "line-by-line": "^0.1.4",
     "moment": "^2.10.6"
   }
 }
