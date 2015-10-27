@@ -45,6 +45,10 @@ lr.on('end', function() {
 
   var downloadPerc = Math.round((pEntry.download/42667)*100) + '%'
   var uploadPerc = Math.round((pEntry.upload/8533)*100) + '%'
-  table.addRow('Total used: ', pEntry.download + ' ('+ downloadPerc +')', pEntry.upload + ' ('+ uploadPerc +')');
+  table.addRow(
+    'Total used: ',
+    pEntry.download + ' ('+ downloadPerc +')',
+    pEntry.upload + ' ('+ uploadPerc +')'
+  );
   console.log(table.toString());
 });
