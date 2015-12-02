@@ -1,3 +1,4 @@
+#!/usr/local/bin/node
 var moment = require('moment');
 var AsciiTable = require('ascii-table');
 var LineByLine = require('line-by-line');
@@ -16,11 +17,14 @@ var table = new AsciiTable('Daily Bandwidth Usage');
 table.setHeading('Date', 'Download', 'Upload').setAlign(0, AsciiTable.RIGHT)
 
 var startEntry, pEntry;
+var parsedLines = [];
 var dateFormat = 'ddd DD-MM-YYYY';
+
 lr.on('line', function(line){
   var entry = parseLine(line);
   if(!startEntry) startEntry = entry;
-  if(entry.datetime.date() - startEntry.datetime.date() > 0) {
+  if(entry.download == 0) startEntry = entry;
+  if(entry.datetime.date() - startEntry.datetime.date() > 0 || entry.datetime.month() - startEntry.datetime.month() > 0) {
     table.addRow(
       startEntry.datetime.format(dateFormat),
       entry.download - startEntry.download,
@@ -30,7 +34,7 @@ lr.on('line', function(line){
     // shift to new day
     startEntry = entry;
   }
-
+  // parsedLines.push(line);
   pEntry = entry;
 });
 
@@ -51,4 +55,5 @@ lr.on('end', function() {
     pEntry.upload + ' ('+ uploadPerc +')'
   );
   console.log(table.toString());
+  // console.log(parsedLines);
 });

@@ -30,12 +30,12 @@ casper.then(function(){
 
 casper.waitFor(function() {
   return this.evaluate(function() {
-    return !!document.querySelector('.ses-chart .panel:last-child .zone1 .pointer-label');
+    return !!document.querySelector('.ses-chart .panel:last-child .pointer .pointer-label');
   });
 }, function() {
   var usage = {
-    download: this.evaluate(function() { return document.querySelector('.ses-chart .panel:first-child .zone1 .pointer-label').childNodes[0].nodeValue; }),
-    upload: this.evaluate(function() { return document.querySelector('.ses-chart .panel:last-child .zone1 .pointer-label').childNodes[0].nodeValue; })
+    download: this.evaluate(function() { return document.querySelector('.ses-chart .panel:first-child .pointer .pointer-label').childNodes[0].nodeValue; }),
+    upload: this.evaluate(function() { return document.querySelector('.ses-chart .panel:last-child .pointer .pointer-label').childNodes[0].nodeValue; })
   }
   var timestamp = moment().format("YYYY-MM-DD HH:mm Z");
   if(!fs.isFile(logfile)) fs.touch(logfile);
